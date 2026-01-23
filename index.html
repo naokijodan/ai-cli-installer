@@ -462,6 +462,93 @@
             background: #28a745;
         }
 
+        /* 例ボックス */
+        .example-box {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid #dee2e6;
+        }
+
+        .example-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+
+        .example-list {
+            margin: 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .example-list li {
+            background: white;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .example-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .example-list code {
+            color: #333;
+            font-size: 0.95em;
+        }
+
+        /* GitHub手順 */
+        .github-steps {
+            margin-top: 15px;
+        }
+
+        .github-step {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .github-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .github-step-num {
+            background: #24292e;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .github-step-content {
+            flex: 1;
+            line-height: 1.6;
+        }
+
+        .github-step-content code {
+            display: block;
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+
+        .github-step-content a {
+            color: #667eea;
+        }
+
         /* レスポンシブ */
         @media (max-width: 600px) {
             .hero {
@@ -795,6 +882,113 @@
                         <p>→ Gemini CLI が起動</p>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- はじめての使い方ガイド -->
+        <section class="card">
+            <h2><span class="emoji">🎓</span>はじめての使い方ガイド</h2>
+            <p>インストールできたら、まずは簡単な指示を出してみましょう！</p>
+
+            <h3 style="margin-top: 30px; margin-bottom: 15px; color: #667eea;">📝 ステップ1：簡単な指示を試してみよう</h3>
+            <p>ショートカットをダブルクリックしてCLIを起動したら、以下のような指示を入力してみてください：</p>
+
+            <div class="example-box">
+                <div class="example-title">🔰 初心者向けの例</div>
+                <ul class="example-list">
+                    <li><code>デスクトップに「テスト」という名前の空のテキストファイルを作成してください</code></li>
+                    <li><code>ゴミ箱を空にしてください</code></li>
+                    <li><code>Chromeでメルカリのページを開いてください</code></li>
+                    <li><code>Chromeをシークレットモードで開いてください</code></li>
+                    <li><code>今日の天気を調べてください</code></li>
+                </ul>
+            </div>
+
+            <div class="note" style="margin-top: 20px;">
+                💡 <strong>ポイント</strong>：普段話すような日本語でOK！難しいコマンドを覚える必要はありません。
+            </div>
+
+            <h3 style="margin-top: 40px; margin-bottom: 15px; color: #667eea;">🔌 ステップ2：MCPを接続してパワーアップ</h3>
+            <p><strong>MCP（Model Context Protocol）</strong>を使うと、AIの機能を大幅に拡張できます。</p>
+            <p style="margin-top: 10px;">例えば、Webブラウザを操作したり、ファイルを検索したり、様々なサービスと連携できます。</p>
+
+            <div class="example-box" style="margin-top: 20px;">
+                <div class="example-title">🌟 おすすめMCPの接続方法</div>
+                <p style="margin-bottom: 15px;">CLIに以下のように伝えるだけ：</p>
+                <div class="copy-box">
+                    <code id="mcp-command">おすすめのMCPを教えて、接続方法も教えてください</code>
+                    <button class="copy-btn" onclick="copyCommand('mcp-command')">📋 コピー</button>
+                </div>
+                <p style="margin-top: 15px; color: #666;">または、具体的に：</p>
+                <ul class="example-list" style="margin-top: 10px;">
+                    <li><code>Playwright MCPを接続してください（ブラウザ操作用）</code></li>
+                    <li><code>Firecrawl MCPを接続してください（Web検索・スクレイピング用）</code></li>
+                    <li><code>Obsidian MCPを接続してください（ノート管理用）</code></li>
+                </ul>
+            </div>
+
+            <h3 style="margin-top: 40px; margin-bottom: 15px; color: #667eea;">⚡ ステップ3：スキルを追加</h3>
+            <p><strong>スキル</strong>を追加すると、AIがより専門的な作業をこなせるようになります。</p>
+
+            <div class="example-box" style="margin-top: 20px;">
+                <div class="example-title">📦 スキルの追加方法</div>
+                <div class="copy-box">
+                    <code id="skill-command">おすすめのスキルを教えて、インストール方法も教えてください</code>
+                    <button class="copy-btn" onclick="copyCommand('skill-command')">📋 コピー</button>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px; margin-bottom: 15px; color: #667eea;">📓 ステップ4：ルールを設定（便利！）</h3>
+            <p>AIに「毎回こうしてほしい」というルールを設定できます。</p>
+
+            <div class="example-box" style="margin-top: 20px;">
+                <div class="example-title">⚙️ ルール設定の例</div>
+                <ul class="example-list">
+                    <li><code>作業が終わったら必ずObsidianにノートを作成するルールを追加してください</code></li>
+                    <li><code>コードを書いたら必ずGitにコミットするルールを追加してください</code></li>
+                    <li><code>日本語で返答するルールを追加してください</code></li>
+                </ul>
+            </div>
+
+            <h3 style="margin-top: 40px; margin-bottom: 15px; color: #667eea;">💾 ステップ5：GitHubでコードを管理（超おすすめ）</h3>
+            <p>作成したファイルやコードをGitHubで管理すると、以下のメリットがあります：</p>
+            <ul style="margin: 15px 0 15px 20px;">
+                <li>変更履歴が残る（いつでも前の状態に戻せる）</li>
+                <li>バックアップになる（PCが壊れても大丈夫）</li>
+                <li>他の人と共有できる</li>
+            </ul>
+
+            <div class="example-box" style="margin-top: 20px;">
+                <div class="example-title">🐙 GitHubの始め方</div>
+                <div class="github-steps">
+                    <div class="github-step">
+                        <div class="github-step-num">1</div>
+                        <div class="github-step-content">
+                            <strong>GitHubアカウントを作成</strong><br>
+                            <a href="https://github.com/signup" target="_blank">https://github.com/signup</a> にアクセスして無料アカウントを作成
+                        </div>
+                    </div>
+                    <div class="github-step">
+                        <div class="github-step-num">2</div>
+                        <div class="github-step-content">
+                            <strong>CLIにGitHubの設定をお願い</strong><br>
+                            <code>GitHubにログインできるように設定してください</code>
+                        </div>
+                    </div>
+                    <div class="github-step">
+                        <div class="github-step-num">3</div>
+                        <div class="github-step-content">
+                            <strong>作業後にコミット＆プッシュ</strong><br>
+                            <code>今の変更をGitHubにコミット・プッシュしてください</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note" style="margin-top: 20px;">
+                💡 <strong>コミット</strong>＝変更を記録すること<br>
+                💡 <strong>プッシュ</strong>＝記録をGitHubにアップロードすること<br>
+                難しく考えず、「保存してアップロード」くらいの感覚でOK！
             </div>
         </section>
 
