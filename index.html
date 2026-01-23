@@ -504,13 +504,13 @@
             </p>
 
             <div class="download-section">
-                <a href="#install-section" class="download-btn mac">
+                <a href="#install-section" class="download-btn mac" onclick="showTab('mac')">
                     <span class="icon">🍎</span>
                     <span>Mac版のインストール方法</span>
                 </a>
-                <a href="https://github.com/naokijodan/ai-cli-installer/releases/download/v1.0.0/install-ai-cli-windows.bat" class="download-btn windows">
+                <a href="#install-section" class="download-btn windows" onclick="showTab('windows')">
                     <span class="icon">🪟</span>
-                    <span>Windows版をダウンロード</span>
+                    <span>Windows版のインストール方法</span>
                 </a>
             </div>
         </section>
@@ -644,18 +644,49 @@
                     <div class="step">
                         <div class="step-number">1</div>
                         <div class="step-content">
-                            <h3>ダウンロード</h3>
-                            <p>上の「Windows版をダウンロード」ボタンをクリック</p>
+                            <h3>PowerShellを管理者として開く</h3>
+                            <p>以下のどちらかの方法で開いてください：</p>
+
+                            <div class="method-box">
+                                <div class="method-title">🔍 方法A：スタートメニューから（簡単！）</div>
+                                <ol class="method-steps">
+                                    <li><strong>スタートボタン</strong>（Windowsマーク）を<strong>右クリック</strong></li>
+                                    <li>「<strong>Windows PowerShell (管理者)</strong>」または「<strong>ターミナル (管理者)</strong>」をクリック</li>
+                                    <li>「このアプリがデバイスに変更を加えることを許可しますか？」→「<strong>はい</strong>」</li>
+                                </ol>
+                            </div>
+
+                            <div class="method-box">
+                                <div class="method-title">🔍 方法B：検索から開く</div>
+                                <ol class="method-steps">
+                                    <li>キーボードで <kbd>Win</kbd> キーを押す</li>
+                                    <li>「<strong>PowerShell</strong>」と入力</li>
+                                    <li>「Windows PowerShell」を<strong>右クリック</strong>→「<strong>管理者として実行</strong>」</li>
+                                </ol>
+                            </div>
+
+                            <div class="terminal-preview" style="background: #012456;">
+                                <div class="terminal-header" style="background: #012456;">
+                                    <span class="terminal-title" style="color: #fff;">Windows PowerShell (管理者)</span>
+                                </div>
+                                <div class="terminal-body">
+                                    こんな青い画面が開けばOK！<br>
+                                    <span style="color: #ffff00;">PS C:\Users\あなたの名前&gt;</span> <span class="terminal-cursor">|</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="step">
                         <div class="step-number">2</div>
                         <div class="step-content">
-                            <h3>管理者として実行</h3>
-                            <p>ダウンロードした <code>install-ai-cli-windows.bat</code> を<strong>右クリック</strong>→「<strong>管理者として実行</strong>」</p>
-                            <div class="note">
-                                ⚠️「WindowsによってPCが保護されました」と出た場合：<br>
-                                「詳細情報」→「実行」をクリック
+                            <h3>コマンドをコピペして実行</h3>
+                            <p>以下のコマンドをコピーして、PowerShellに貼り付けてEnterキーを押してください</p>
+                            <div class="copy-box" style="background: #012456;">
+                                <code id="win-command" style="color: #fff;">irm https://raw.githubusercontent.com/naokijodan/ai-cli-installer/main/install-windows.ps1 | iex</code>
+                                <button class="copy-btn" onclick="copyCommand('win-command')">📋 コピー</button>
+                            </div>
+                            <div class="note" style="margin-top: 15px;">
+                                💡 <strong>貼り付け方</strong>：PowerShell画面上で<strong>右クリック</strong>すると貼り付けられます
                             </div>
                         </div>
                     </div>
