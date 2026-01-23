@@ -328,6 +328,48 @@
             white-space: pre-wrap;
         }
 
+        /* コピーボックス */
+        .copy-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .copy-box code {
+            color: #00ff00;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.85em;
+            word-break: break-all;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            background: #5a6fd6;
+        }
+
+        .copy-btn.copied {
+            background: #28a745;
+        }
+
         /* レスポンシブ */
         @media (max-width: 600px) {
             .hero {
@@ -370,9 +412,9 @@
             </p>
 
             <div class="download-section">
-                <a href="https://github.com/naokijodan/ai-cli-installer/releases/download/v1.0.0/ai-cli-installer-mac.zip" class="download-btn mac">
+                <a href="#install-section" class="download-btn mac">
                     <span class="icon">🍎</span>
-                    <span>Mac版をダウンロード</span>
+                    <span>Mac版のインストール方法</span>
                 </a>
                 <a href="https://github.com/naokijodan/ai-cli-installer/releases/download/v1.0.0/install-ai-cli-windows.bat" class="download-btn windows">
                     <span class="icon">🪟</span>
@@ -410,7 +452,7 @@
         </section>
 
         <!-- インストール方法 -->
-        <section class="card">
+        <section class="card" id="install-section">
             <h2><span class="emoji">📥</span>インストール方法</h2>
 
             <div class="tabs">
@@ -424,39 +466,31 @@
                     <div class="step">
                         <div class="step-number">1</div>
                         <div class="step-content">
-                            <h3>ダウンロード</h3>
-                            <p>上の「Mac版をダウンロード」ボタンをクリック</p>
+                            <h3>ターミナルを開く</h3>
+                            <p><strong>Finder</strong> → <strong>アプリケーション</strong> → <strong>ユーティリティ</strong> → <strong>ターミナル</strong></p>
+                            <p style="color:#666; margin-top:8px;">または、Spotlight（⌘+スペース）で「ターミナル」と検索</p>
                         </div>
                     </div>
                     <div class="step">
                         <div class="step-number">2</div>
                         <div class="step-content">
-                            <h3>ZIPを展開</h3>
-                            <p>ダウンロードした <code>ai-cli-installer-mac.zip</code> をダブルクリックして展開</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3>インストーラーを開く</h3>
-                            <p>展開された <code>install-ai-cli-mac.command</code> を<strong>右クリック</strong>→「<strong>開く</strong>」</p>
-                            <div class="note">
-                                ⚠️ <strong>初回は「右クリック→開く」を使ってください</strong><br><br>
-                                警告が出たら「<strong>開く</strong>」をクリックしてください。<br><br>
-                                それでも開けない場合：<br>
-                                「<strong>システム設定</strong>」→「<strong>プライバシーとセキュリティ</strong>」→「<strong>このまま開く</strong>」
+                            <h3>コマンドをコピペして実行</h3>
+                            <p>以下のコマンドをコピーして、ターミナルに貼り付けてEnterキーを押してください</p>
+                            <div class="copy-box">
+                                <code id="mac-command">curl -fsSL https://raw.githubusercontent.com/naokijodan/ai-cli-installer/main/install-ai-cli-mac.command | bash</code>
+                                <button class="copy-btn" onclick="copyCommand('mac-command')">📋 コピー</button>
                             </div>
                         </div>
                     </div>
                     <div class="step">
-                        <div class="step-number">4</div>
+                        <div class="step-number">3</div>
                         <div class="step-content">
                             <h3>番号を選択</h3>
                             <p>インストールしたいツールの番号を入力（4で全部入る）</p>
                         </div>
                     </div>
                     <div class="step">
-                        <div class="step-number">5</div>
+                        <div class="step-number">4</div>
                         <div class="step-content">
                             <h3>完了！</h3>
                             <p>デスクトップにショートカットが作成されます</p>
@@ -665,6 +699,19 @@
                 tab.classList.remove('active');
             });
             event.target.classList.add('active');
+        }
+
+        function copyCommand(elementId) {
+            const code = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = event.target;
+                btn.innerText = '✅ コピーしました！';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerText = '📋 コピー';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
         }
     </script>
 </body>
