@@ -328,6 +328,98 @@
             white-space: pre-wrap;
         }
 
+        /* キーボードキー */
+        kbd {
+            background: #eee;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-family: -apple-system, sans-serif;
+            font-size: 0.9em;
+            box-shadow: 0 2px 0 #999;
+        }
+
+        /* 方法ボックス */
+        .method-box {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .method-title {
+            font-weight: bold;
+            font-size: 1.05em;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .method-steps {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .method-steps li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        /* ターミナルプレビュー */
+        .terminal-preview {
+            background: #1e1e1e;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .terminal-header {
+            background: #3c3c3c;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #ff5f56; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #27ca40; }
+
+        .terminal-title {
+            color: #999;
+            font-size: 0.85em;
+            margin-left: 10px;
+        }
+
+        .terminal-body {
+            padding: 20px;
+            color: #fff;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .terminal-prompt {
+            color: #00ff00;
+        }
+
+        .terminal-cursor {
+            background: #fff;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
         /* コピーボックス */
         .copy-box {
             display: flex;
@@ -467,8 +559,38 @@
                         <div class="step-number">1</div>
                         <div class="step-content">
                             <h3>ターミナルを開く</h3>
-                            <p><strong>Finder</strong> → <strong>アプリケーション</strong> → <strong>ユーティリティ</strong> → <strong>ターミナル</strong></p>
-                            <p style="color:#666; margin-top:8px;">または、Spotlight（⌘+スペース）で「ターミナル」と検索</p>
+                            <p>以下のどちらかの方法で開いてください：</p>
+
+                            <div class="method-box">
+                                <div class="method-title">🔍 方法A：Spotlightで検索（簡単！）</div>
+                                <ol class="method-steps">
+                                    <li>キーボードで <kbd>⌘</kbd> + <kbd>スペース</kbd> を同時に押す</li>
+                                    <li>検索窓が出てくるので「<strong>ターミナル</strong>」と入力</li>
+                                    <li>「ターミナル.app」が出てきたら <kbd>Enter</kbd> を押す</li>
+                                </ol>
+                            </div>
+
+                            <div class="method-box">
+                                <div class="method-title">📁 方法B：Finderから開く</div>
+                                <ol class="method-steps">
+                                    <li>Finderを開く（Dockの笑顔のアイコン）</li>
+                                    <li>上のメニューから「<strong>移動</strong>」→「<strong>ユーティリティ</strong>」</li>
+                                    <li>「<strong>ターミナル</strong>」をダブルクリック</li>
+                                </ol>
+                            </div>
+
+                            <div class="terminal-preview">
+                                <div class="terminal-header">
+                                    <span class="terminal-dot red"></span>
+                                    <span class="terminal-dot yellow"></span>
+                                    <span class="terminal-dot green"></span>
+                                    <span class="terminal-title">ターミナル</span>
+                                </div>
+                                <div class="terminal-body">
+                                    こんな黒い画面が開けばOK！<br>
+                                    <span class="terminal-prompt">$</span> <span class="terminal-cursor">|</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="step">
