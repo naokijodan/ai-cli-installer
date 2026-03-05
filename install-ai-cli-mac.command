@@ -61,7 +61,7 @@ print_step() {
 
 press_enter() {
     echo ""
-    read -p "Enterキーを押して続行..." _
+    read -p "Enterキーを押して続行..." _ < /dev/tty
 }
 
 # ============================================================
@@ -280,11 +280,11 @@ setup_api_keys() {
         echo -e "${YELLOW}【Claude Code】${NC}"
         echo "APIキー取得先: https://console.anthropic.com/"
         echo ""
-        read -p "Claude APIキーを今すぐ設定しますか？ (y/n): " setup_claude
+        read -p "Claude APIキーを今すぐ設定しますか？ (y/n): " setup_claude < /dev/tty
 
         if [[ "$setup_claude" == "y" || "$setup_claude" == "Y" ]]; then
             echo ""
-            read -p "APIキーを入力してください: " claude_key
+            read -p "APIキーを入力してください: " claude_key < /dev/tty
             if [[ -n "$claude_key" ]]; then
                 # .zshrc と .bash_profile に追加
                 echo "export ANTHROPIC_API_KEY=\"$claude_key\"" >> ~/.zshrc
@@ -305,11 +305,11 @@ setup_api_keys() {
         echo -e "${YELLOW}【Codex CLI】${NC}"
         echo "APIキー取得先: https://platform.openai.com/"
         echo ""
-        read -p "OpenAI APIキーを今すぐ設定しますか？ (y/n): " setup_openai
+        read -p "OpenAI APIキーを今すぐ設定しますか？ (y/n): " setup_openai < /dev/tty
 
         if [[ "$setup_openai" == "y" || "$setup_openai" == "Y" ]]; then
             echo ""
-            read -p "APIキーを入力してください: " openai_key
+            read -p "APIキーを入力してください: " openai_key < /dev/tty
             if [[ -n "$openai_key" ]]; then
                 echo "export OPENAI_API_KEY=\"$openai_key\"" >> ~/.zshrc
                 echo "export OPENAI_API_KEY=\"$openai_key\"" >> ~/.bash_profile
@@ -330,11 +330,11 @@ setup_api_keys() {
         echo "APIキー取得先: https://aistudio.google.com/"
         echo "※ 初回起動時にGoogleログインで認証する方法もあります"
         echo ""
-        read -p "Google APIキーを今すぐ設定しますか？ (y/n): " setup_google
+        read -p "Google APIキーを今すぐ設定しますか？ (y/n): " setup_google < /dev/tty
 
         if [[ "$setup_google" == "y" || "$setup_google" == "Y" ]]; then
             echo ""
-            read -p "APIキーを入力してください: " google_key
+            read -p "APIキーを入力してください: " google_key < /dev/tty
             if [[ -n "$google_key" ]]; then
                 echo "export GOOGLE_API_KEY=\"$google_key\"" >> ~/.zshrc
                 echo "export GOOGLE_API_KEY=\"$google_key\"" >> ~/.bash_profile
@@ -365,7 +365,7 @@ show_menu() {
     echo -e "  ${CYAN}[5]${NC} 終了"
     echo ""
 
-    read -p "番号を入力してください (1-5): " choice
+    read -p "番号を入力してください (1-5): " choice < /dev/tty
 
     case $choice in
         1)
@@ -521,7 +521,7 @@ main() {
     $INSTALL_CODEX && echo "  • Codex CLI"
     $INSTALL_GEMINI && echo "  • Gemini CLI"
     echo ""
-    read -p "続行しますか？ (y/n): " confirm
+    read -p "続行しますか？ (y/n): " confirm < /dev/tty
 
     if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
         echo "インストールをキャンセルしました。"
