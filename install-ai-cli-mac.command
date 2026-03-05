@@ -268,84 +268,33 @@ SCRIPT
 # ============================================================
 
 setup_api_keys() {
-    print_step "APIキーの設定"
+    print_step "ログイン方法について"
 
-    echo "各AIサービスを使用するにはAPIキーが必要です。"
-    echo "今すぐ設定するか、後で設定するか選択してください。"
+    echo "各AI CLIは、初回起動時にブラウザでログインするだけで使えます。"
     echo ""
 
-    # Claude API Key
     if $INSTALL_CLAUDE; then
+        echo -e "  🟣 ${YELLOW}Claude Code${NC}"
+        echo "     → 起動すると自動的にブラウザが開きます"
+        echo "     → Anthropicアカウントでログインしてください"
+        echo "     → Claude Pro（\$20/月）またはMax（\$100/月）のサブスクが必要です"
         echo ""
-        echo -e "${YELLOW}【Claude Code】${NC}"
-        echo "APIキー取得先: https://console.anthropic.com/"
-        echo ""
-        read -p "Claude APIキーを今すぐ設定しますか？ (y/n): " setup_claude < /dev/tty
-
-        if [[ "$setup_claude" == "y" || "$setup_claude" == "Y" ]]; then
-            echo ""
-            read -p "APIキーを入力してください: " claude_key < /dev/tty
-            if [[ -n "$claude_key" ]]; then
-                # .zshrc と .bash_profile に追加
-                echo "export ANTHROPIC_API_KEY=\"$claude_key\"" >> ~/.zshrc
-                echo "export ANTHROPIC_API_KEY=\"$claude_key\"" >> ~/.bash_profile
-                export ANTHROPIC_API_KEY="$claude_key"
-                print_success "Claude APIキーを設定しました"
-            fi
-        else
-            echo ""
-            echo "後で設定する場合は、ターミナルで以下を実行してください："
-            echo -e "${CYAN}export ANTHROPIC_API_KEY=\"your-api-key\"${NC}"
-        fi
     fi
 
-    # OpenAI API Key
     if $INSTALL_CODEX; then
+        echo -e "  🟢 ${YELLOW}Codex CLI${NC}"
+        echo "     → 起動すると自動的にブラウザが開きます"
+        echo "     → ChatGPTアカウントでログインしてください"
+        echo "     → 現在は無料プランでも利用可能です"
         echo ""
-        echo -e "${YELLOW}【Codex CLI】${NC}"
-        echo "APIキー取得先: https://platform.openai.com/"
-        echo ""
-        read -p "OpenAI APIキーを今すぐ設定しますか？ (y/n): " setup_openai < /dev/tty
-
-        if [[ "$setup_openai" == "y" || "$setup_openai" == "Y" ]]; then
-            echo ""
-            read -p "APIキーを入力してください: " openai_key < /dev/tty
-            if [[ -n "$openai_key" ]]; then
-                echo "export OPENAI_API_KEY=\"$openai_key\"" >> ~/.zshrc
-                echo "export OPENAI_API_KEY=\"$openai_key\"" >> ~/.bash_profile
-                export OPENAI_API_KEY="$openai_key"
-                print_success "OpenAI APIキーを設定しました"
-            fi
-        else
-            echo ""
-            echo "後で設定する場合は、ターミナルで以下を実行してください："
-            echo -e "${CYAN}export OPENAI_API_KEY=\"your-api-key\"${NC}"
-        fi
     fi
 
-    # Google API Key
     if $INSTALL_GEMINI; then
+        echo -e "  🔵 ${YELLOW}Gemini CLI${NC}"
+        echo "     → 起動すると自動的にブラウザが開きます"
+        echo "     → Googleアカウントでログインしてください"
+        echo "     → 無料で利用できます"
         echo ""
-        echo -e "${YELLOW}【Gemini CLI】${NC}"
-        echo "APIキー取得先: https://aistudio.google.com/"
-        echo "※ 初回起動時にGoogleログインで認証する方法もあります"
-        echo ""
-        read -p "Google APIキーを今すぐ設定しますか？ (y/n): " setup_google < /dev/tty
-
-        if [[ "$setup_google" == "y" || "$setup_google" == "Y" ]]; then
-            echo ""
-            read -p "APIキーを入力してください: " google_key < /dev/tty
-            if [[ -n "$google_key" ]]; then
-                echo "export GOOGLE_API_KEY=\"$google_key\"" >> ~/.zshrc
-                echo "export GOOGLE_API_KEY=\"$google_key\"" >> ~/.bash_profile
-                export GOOGLE_API_KEY="$google_key"
-                print_success "Google APIキーを設定しました"
-            fi
-        else
-            echo ""
-            echo "後で設定する場合は、ターミナルで以下を実行してください："
-            echo -e "${CYAN}export GOOGLE_API_KEY=\"your-api-key\"${NC}"
-        fi
     fi
 }
 
@@ -469,15 +418,14 @@ show_completion() {
     echo ""
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo ""
-    echo "【APIキーについて】"
+    echo "【ログインについて】"
     echo ""
-    echo "  各サービスを使うにはAPIキーが必要です。"
-    echo "  設定していない場合は、各サービスのサイトで"
-    echo "  APIキーを取得してください。"
+    echo "  各CLIは初回起動時にブラウザが開きます。"
+    echo "  画面の指示に従ってログインしてください。"
     echo ""
-    echo "  Claude: https://console.anthropic.com/"
-    echo "  OpenAI: https://platform.openai.com/"
-    echo "  Gemini: https://aistudio.google.com/"
+    echo "  Claude: Anthropicアカウント（Pro/Maxサブスク必要）"
+    echo "  Codex:  ChatGPTアカウント（無料プランでも利用可）"
+    echo "  Gemini: Googleアカウント（無料）"
     echo ""
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo ""
