@@ -71,6 +71,10 @@ press_enter() {
 check_homebrew() {
     if command -v brew &> /dev/null; then
         return 0
+    elif [ -f /opt/homebrew/bin/brew ]; then
+        return 0
+    elif [ -f /usr/local/bin/brew ]; then
+        return 0
     else
         return 1
     fi
@@ -486,6 +490,13 @@ show_completion() {
 main() {
     # ホームディレクトリに移動
     cd ~
+
+    # Homebrewのパスを自動検出して設定
+    if [ -f /opt/homebrew/bin/brew ]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [ -f /usr/local/bin/brew ]; then
+        eval "$(/usr/local/bin/brew shellenv)"
+    fi
 
     # ヘッダー表示
     print_header
