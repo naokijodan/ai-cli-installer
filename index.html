@@ -634,6 +634,33 @@
                 width: 100%;
             }
         }
+
+        /* MCPコピーエリア */
+        .mcp-copy-area {
+            position: relative;
+            background: #1e1e1e;
+            border-radius: 10px;
+            padding: 25px;
+            padding-top: 55px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .mcp-copy-area pre {
+            color: #00ff00;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.85em;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-break: break-all;
+            margin: 0;
+        }
+
+        .mcp-copy-area .copy-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
     </style>
 </head>
 <body>
@@ -894,40 +921,65 @@
                 <h2>⚡ もっと便利に使おう</h2>
                 <p class="description">MCPやスキルを追加して、AIをパワーアップさせましょう！</p>
 
-                <h3 class="section-title">🔌 MCPを接続する</h3>
+                <h3 class="section-title">🔌 おすすめMCPを一括セットアップ</h3>
                 <p><strong>MCP（Model Context Protocol）</strong>を使うと、AIができることが大幅に増えます。</p>
+                <p style="margin-top: 10px;">以下のテキストをコピーして、Claude Code に貼り付けるだけ！全てのMCPが自動的にセットアップされます。</p>
 
-                <div class="example-box">
-                    <div class="example-title">🌟 おすすめMCPを入れてもらう</div>
-                    <p style="margin-bottom: 15px;">CLIにこう伝えるだけ：</p>
-                    <div class="copy-box">
-                        <code id="mcp-command">おすすめのMCPを教えて、接続してください</code>
-                        <button class="copy-btn" onclick="copyCommand('mcp-command')">📋 コピー</button>
-                    </div>
+                <div class="mcp-copy-area">
+                    <button class="copy-btn" onclick="copyCommand('mcp-setup-prompt')">📋 全てコピー</button>
+                    <pre id="mcp-setup-prompt">以下のMCPサーバーを全て接続してください。上から順番に、1つずつ確実に接続してください。APIキーが必要なものは、接続時に聞いてください。
+
+■ ブラウザ操作
+1. Playwright MCP を接続してください（ブラウザ自動操作用）
+
+■ Web検索・スクレイピング
+2. Firecrawl MCP を接続してください（Web検索・データ抽出用）
+3. Tavily MCP を接続してください（AI特化Web検索・リサーチ用）
+
+■ ノート・ドキュメント管理
+4. Obsidian MCP を接続してください（ノート管理用）
+5. Google Sheets MCP を接続してください（スプレッドシート操作用）
+
+■ 開発ツール
+6. GitHub MCP を接続してください（Issue・PR管理用）
+
+■ デザイン
+7. Figma MCP を接続してください（デザイン連携用）
+
+■ 画像生成（OpenAI APIキーが必要）
+8. DALL-E MCP を接続してください（AI画像生成用）
+   npmパッケージ: dalle-mcp
+
+全て完了したら、接続できたMCPの一覧を表示してください。</pre>
                 </div>
 
-                <div class="card-grid">
-                    <div class="mini-card">
-                        <h4>🌐 Playwright</h4>
-                        <p>ブラウザを自動操作</p>
-                        <div class="command">Playwright MCPを接続してください</div>
-                    </div>
-                    <div class="mini-card">
-                        <h4>🔥 Firecrawl</h4>
-                        <p>Web検索・スクレイピング</p>
-                        <div class="command">Firecrawl MCPを接続してください</div>
-                    </div>
-                    <div class="mini-card">
-                        <h4>📓 Obsidian</h4>
-                        <p>ノート管理と連携</p>
-                        <div class="command">Obsidian MCPを接続してください</div>
-                    </div>
-                    <div class="mini-card">
-                        <h4>📊 Google Sheets</h4>
-                        <p>スプレッドシート操作</p>
-                        <div class="command">Google Sheets MCPを接続してください</div>
-                    </div>
+                <div class="note info">
+                    💡 不要なMCPは、貼り付ける前に行ごと削除してOKです
                 </div>
+
+                <h3 class="section-title">📋 各MCPの説明</h3>
+                <table class="api-table">
+                    <tr><th>MCP</th><th>できること</th></tr>
+                    <tr><td>🌐 Playwright</td><td>Webページを開く、クリック、入力、スクリーンショット</td></tr>
+                    <tr><td>🔥 Firecrawl</td><td>Webサイトの情報取得、検索、データ抽出</td></tr>
+                    <tr><td>🔍 Tavily</td><td>AI向け深掘りリサーチ、最新情報取得</td></tr>
+                    <tr><td>📓 Obsidian</td><td>ノート作成・検索・編集・タグ管理</td></tr>
+                    <tr><td>📊 Google Sheets</td><td>スプレッドシート作成・編集・グラフ</td></tr>
+                    <tr><td>🐙 GitHub</td><td>Issue作成、PR管理、リポジトリ操作</td></tr>
+                    <tr><td>🎨 Figma</td><td>デザインファイルとの連携</td></tr>
+                    <tr><td>🖼️ DALL-E</td><td>AI画像生成・編集</td></tr>
+                </table>
+
+                <h3 class="section-title">⚠️ APIキーが必要なMCP</h3>
+                <p>以下のMCPは事前にAPIキーの取得が必要です（持っていない場合はスキップされます）</p>
+                <table class="api-table">
+                    <tr><th>MCP</th><th>取得先</th><th>費用</th></tr>
+                    <tr><td>Firecrawl</td><td><a href="https://firecrawl.dev" target="_blank">firecrawl.dev</a></td><td>無料枠あり</td></tr>
+                    <tr><td>Tavily</td><td><a href="https://tavily.com" target="_blank">tavily.com</a></td><td>無料枠あり</td></tr>
+                    <tr><td>Google Sheets</td><td>GCPサービスアカウント</td><td>無料</td></tr>
+                    <tr><td>DALL-E</td><td><a href="https://platform.openai.com" target="_blank">platform.openai.com</a></td><td>従量課金</td></tr>
+                    <tr><td>Figma</td><td>公式MCPが自動設定</td><td>無料</td></tr>
+                </table>
 
                 <h3 class="section-title">⚙️ ルールを設定する</h3>
                 <p>「毎回こうしてほしい」というルールを設定できます。</p>
