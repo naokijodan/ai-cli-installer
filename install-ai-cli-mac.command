@@ -127,7 +127,7 @@ install_homebrew() {
     echo "インストール中にパスワードを求められる場合があります。"
     echo ""
 
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" < /dev/tty
 
     # Apple Silicon Mac の場合のPATH設定
     if [[ $(uname -m) == "arm64" ]]; then
