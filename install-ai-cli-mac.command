@@ -142,18 +142,20 @@ install_homebrew() {
 }
 
 install_node() {
-    print_step "Node.js をインストール中..."
+    print_step "Node.js が必要です"
 
-    brew install node
-
-    if check_node && check_npm; then
-        print_success "Node.js のインストールが完了しました"
-        echo "  Node.js: $(node --version)"
-        echo "  npm: $(npm --version)"
-    else
-        print_error "Node.js のインストールに失敗しました"
-        exit 1
-    fi
+    echo "Node.jsはJavaScript実行環境です。"
+    echo "このインストーラーを使う前に、Node.jsを先にインストールしてください。"
+    echo ""
+    echo -e "${YELLOW}【手順】${NC}"
+    echo ""
+    echo "  ターミナルで以下のコマンドを実行："
+    echo ""
+    echo -e "     ${CYAN}brew install node${NC}"
+    echo ""
+    echo "  完了したら、このインストーラーを再度実行してください。"
+    echo ""
+    exit 1
 }
 
 setup_npm_global() {

@@ -706,7 +706,29 @@
                         <div class="step">
                             <div class="step-number">2</div>
                             <div class="step-content">
-                                <h3>コマンドをコピペして実行</h3>
+                                <h3>Homebrewをインストール（初回のみ）</h3>
+                                <p>以下をコピーして、ターミナルに貼り付けて <kbd>Enter</kbd></p>
+                                <div class="copy-box">
+                                    <code id="mac-brew-command">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code>
+                                    <button class="copy-btn" onclick="copyCommand('mac-brew-command')">📋 コピー</button>
+                                </div>
+                                <div class="note">
+                                    ⏱️ 初回は10〜20分かかることがあります。パスワードを求められたらMacのログインパスワードを入力してください。<br>
+                                    ⚠️ すでにHomebrewが入っている場合はスキップしてOKです。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>ターミナルを一度閉じて開き直す</h3>
+                                <p>Homebrewの設定を反映するため、ターミナルを<strong>閉じてからもう一度開いて</strong>ください。</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>インストーラーを実行</h3>
                                 <p>以下をコピーして、ターミナルに貼り付けて <kbd>Enter</kbd></p>
                                 <div class="copy-box">
                                     <code id="mac-command">curl -fsSL https://raw.githubusercontent.com/naokijodan/ai-cli-installer/main/install-ai-cli-mac.command | bash</code>
@@ -715,14 +737,14 @@
                             </div>
                         </div>
                         <div class="step">
-                            <div class="step-number">3</div>
+                            <div class="step-number">5</div>
                             <div class="step-content">
                                 <h3>番号を選んでインストール</h3>
                                 <p>「4」を入力すると全部インストールされます（おすすめ）</p>
                             </div>
                         </div>
                         <div class="step">
-                            <div class="step-number">4</div>
+                            <div class="step-number">6</div>
                             <div class="step-content">
                                 <h3>APIキーを設定</h3>
                                 <p>各サービスのAPIキーを入力します（後からでもOK）</p>
