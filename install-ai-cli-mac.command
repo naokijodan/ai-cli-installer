@@ -121,26 +121,20 @@ check_gemini() {
 # ============================================================
 
 install_homebrew() {
-    print_step "Homebrew をインストール中..."
+    print_step "Homebrew が必要です"
 
     echo "Homebrewはmacのパッケージ管理ツールです。"
-    echo "インストール中にパスワードを求められる場合があります。"
+    echo "このインストーラーを使う前に、Homebrewを先にインストールしてください。"
     echo ""
-
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" < /dev/tty
-
-    # Apple Silicon Mac の場合のPATH設定
-    if [[ $(uname -m) == "arm64" ]]; then
-        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-    fi
-
-    if check_homebrew; then
-        print_success "Homebrew のインストールが完了しました"
-    else
-        print_error "Homebrew のインストールに失敗しました"
-        exit 1
-    fi
+    echo -e "${YELLOW}【手順】${NC}"
+    echo ""
+    echo "  1. 以下のコマンドをコピーしてターミナルに貼り付けて実行："
+    echo ""
+    echo -e "     ${CYAN}/bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"${NC}"
+    echo ""
+    echo "  2. Homebrewのインストールが完了したら、このインストーラーを再度実行してください。"
+    echo ""
+    exit 1
 }
 
 install_node() {
